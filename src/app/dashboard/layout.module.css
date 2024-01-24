@@ -1,0 +1,37 @@
+.layout{
+    height: 100%;
+    display: grid;
+    grid-template-columns: 100px auto;
+}
+
+.layout main{
+    overflow-y: hidden;
+    padding: 0 50px;
+    display: grid;
+    grid-template-rows: 9vh auto;
+}
+
+.layout header{
+    align-items: center;    
+}
+
+.layout aside{
+    display: flex;
+    gap: 15px;
+    flex-direction: column;
+    align-items: center;
+    background: var(--main-wt);
+    padding: 25px 15px;
+}
+
+
+
+.layout section{
+    max-height: 91vh;
+}
+
+.layout section > div{
+    height: 100%;
+    overflow: hidden;
+}
+
