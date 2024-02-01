@@ -1,0 +1,55 @@
+.leads-history{
+    gap: 15px;
+}
+
+.leads-history-box{
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 20px;
+    border: 1px solid;
+    background: var(--main-bg);
+    position: relative;
+    font-size: 0.9rem;
+}
+
+.leads-history-box > div{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.leads-history-box > div img{
+    width: 15px;
+}
+
+.leads-history-box-1{
+    border-color: var(--status-1);
+}
+
+.leads-history-box-2{
+    border-color: var(--status-2);
+}
+
+.leads-history-box-3{
+    border-color: var(--status-3);
+}
+
+.image-1{
+    background: radial-gradient(var(--status-1) 40%, rgba(255, 255, 255, 0) 30%);
+}
+
+.image-2{
+    background: radial-gradient(var(--status-2) 40%, rgba(255, 255, 255, 0) 30%);
+}
+
+.image-3{
+    background: radial-gradient(var(--status-3) 40%, rgba(255, 255, 255, 0) 30%);
+}
+
+
+.leads-history-box .arrow-icon{
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}

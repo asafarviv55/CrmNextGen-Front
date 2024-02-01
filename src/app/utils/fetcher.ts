@@ -1,4 +1,6 @@
-export default async function getData(url) {
-    const res = await fetch(url);
+export default async function getData<T>(url):T {
+    const res = await fetch<T>(url,{
+        "cache": "no-cache"
+    });
     return res.json();
 }

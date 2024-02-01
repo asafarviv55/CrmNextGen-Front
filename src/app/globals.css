@@ -5,6 +5,9 @@
     --main-blue: #184BFF;
     --main-active: #202740;
     --main-inactive: #A0AEC0;
+    --status-1: #4FD1C5;
+    --status-2: #184BFF;
+    --status-3: #C16363;
 }
 
 ::placeholder{
@@ -61,6 +64,37 @@ h1, h2, h3, h4, h5, h6, p{
     width: 100%;
     border-bottom: 1px solid var(--main-gray);
 }
+
+.relative{
+    position: relative;
+}
+
+.loader-wrap{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #ffffffad;
+    display: grid;
+    place-items: center;
+}
+
+.loader {
+    width: 48px;
+    height: 48px;
+    border: 5px solid var(--main-active);
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+    }
+
+@keyframes rotation {
+    0% { transform: rotate(0deg)}
+    100% { transform: rotate(360deg)}
+} 
 
 .flex{
     display: flex;
@@ -173,7 +207,6 @@ aside nav{
     border-bottom: 1px solid #E4E7F0;
 }
 
-
 /* Form: */
 input,select{
     background: #FFFFFF;
@@ -182,6 +215,12 @@ input,select{
     border: unset;
     font-size: 14px;
 }
+
+textarea{
+    padding: 10px;  
+    border-radius: 20px;
+}
+
 
 
 .input-search{
@@ -290,4 +329,56 @@ input,select{
 .top-bar .tab.active{
     color: var(--main-active);
     border-bottom: 2px solid var(--main-blue);
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form .flex label{
+    width: 100%;
+}
+
+.form label{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form label span{
+    padding-inline-start: 15px;
+    font-size: 0.85rem;
+    color: var(--main-inactive);
+}
+
+.form label textarea,
+.form label select,
+.form label input{
+    border: 1px solid var(--main-gray);
+    background: var(--main-bg);
+}
+
+.lead-status{
+    height: 20px;
+    text-align: center;
+    display: inline-block;
+    font-size: 0.8rem;
+    padding: 2px 12px;
+    background: #4FD1C5;
+    color: white;
+    border-radius: 50px;
+}
+
+.lead-status-1{
+    background: var(--main-blue);
+}
+
+.lead-status-2{
+    background: #18ACFF;
+}
+
+.lead-status-3{
+    background: #D94D4D;
 }
