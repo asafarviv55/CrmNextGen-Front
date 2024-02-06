@@ -10,12 +10,23 @@ export default function LeadsForm({callback, lead}: {callback: Function, lead?:L
     const [load, setLoad ] = useState<boolean>(false);
     const [err, setErr ] = useState<string>("");
 
+
+    const sources = ["website", "referral", "Social Media", "Email Campaign", "Cold Call", "Event/Trade Show", "Advertisement"];
+    const statuses = ["New", "Contacted", "Qualified", "Not Interested", "Converted", "Lost"];
+    const priorities = ["High", "Medium", "Low"];
+    const industries = ["Technology", "Healthcare", "Finance", "Manufacturing", "Retail", "Education"];
+
     async function save (formData: FormData)  {
+
         setLoad(true);
         try {
             const response = await fetch( appConfig.leadsUrl, {
-                method: "post",
-                body: formData
+                method: "POST",
+                headers: {
+                    mode: "cors",
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(Object.fromEntries(formData))
             })
             if( !response.ok ) throw new Error(response.status)
             alert("נשמר בהצלחה");
@@ -45,14 +56,12 @@ export default function LeadsForm({callback, lead}: {callback: Function, lead?:L
                 <input type="text" name='phone' required/>
             </label>
 
-            <div className="flex gap">
+            <div className="grid colmuns-2 gap">
 
                 <label>
                     <span>Source:</span>
                     <select name="source" required>
-                        <option value="Linkedin">Linkedin</option>
-                        <option value="Facebook">Facebook</option>
-                        <option value="Instagram">Instagram</option>
+                        {sources.map((s,i) => <option key={i} value={s}>{s}</option>)}
                     </select>
                 </label>
 
@@ -60,9 +69,26 @@ export default function LeadsForm({callback, lead}: {callback: Function, lead?:L
                 <label>
                     <span>Status:</span>
                     <select name="status" required>
-                        <option value="open">open</option>
-                        <option value="closed">closed</option>
-                        <option value="new">new</option>
+                        {statuses.map((s,i) => <option key={i} value={s}>{s}</option>)}
+                    </select>
+                </label>
+
+            </div>
+            
+            <div className="grid colmuns-2 gap">
+
+                <label>
+                    <span>priority:</span>
+                    <select name="priority" required>
+                        {priorities.map((p,i) => <option key={i} value={p}>{p}</option>)}
+                    </select>
+                </label>
+
+
+                <label>
+                    <span>industry:</span>
+                    <select name="industry" required>
+                        {industries.map((d,i) => <option key={i} value={d}>{d}</option>)}
                     </select>
                 </label>
 

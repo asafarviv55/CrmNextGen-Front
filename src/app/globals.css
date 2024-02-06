@@ -96,6 +96,14 @@ h1, h2, h3, h4, h5, h6, p{
     100% { transform: rotate(360deg)}
 } 
 
+.grid{
+    display: grid;
+}
+
+.colmuns-2{
+    grid-template-columns: repeat(auto-fill, minmax(45%, 1fr));
+}
+
 .flex{
     display: flex;
 }

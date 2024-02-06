@@ -6,6 +6,7 @@ export default class LeadModel{
     email: string
     status: LeadStatus
     assignTo: number
+    priority: string
     createdOn: string
     updated_on: string
     createdBy: number
@@ -13,6 +14,23 @@ export default class LeadModel{
     customerId: any
     notes: Note[]
 }
+
+// export default class LeadModel{
+//     name: string;
+//     source: "website" | "referral" | "Social Media" | "Email Campaign" | "Cold Call" | "Event/Trade Show" | "Advertisement";
+//     phone: string;
+//     email: string;
+//     status: "New" | "Contacted" | "Qualified" | "Not Interested" | "Converted" | "Lost";
+//     assignTo: "Sales Representative 1" | "Sales Representative 2" | "Sales Manager";
+//     priority: "High" | "Medium" | "Low";
+//     industry: "Technology" | "Healthcare" | "Finance" | "Manufacturing" | "Retail" | "Education";
+//     note: string;
+//     dateOfEntry: Date;
+//     customerId: number;
+//     notes: Note[]
+// }
+
+
   
 export interface Note {
     id: number
@@ -27,3 +45,5 @@ export enum LeadStatus{
     "open" = 2,
     "closed" = 3,
 }
+
+
