@@ -2,19 +2,21 @@ import Loader from "@/app/compoments/loader/loader";
 import Tray from "@/app/compoments/tray/tray";
 import LeadModel from "@/models/lead-model";
 import appConfig from "@/utils/app-config";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { OptionsContext } from "./leads";
 
 
 export default function LeadsForm({callback, lead}: {callback: Function, lead?:LeadModel}){
 
+    const options = useContext(OptionsContext);
+    
     const [load, setLoad ] = useState<boolean>(false);
     const [err, setErr ] = useState<string>("");
 
-
-    const sources = ["website", "referral", "Social Media", "Email Campaign", "Cold Call", "Event/Trade Show", "Advertisement"];
-    const statuses = ["New", "Contacted", "Qualified", "Not Interested", "Converted", "Lost"];
-    const priorities = ["High", "Medium", "Low"];
-    const industries = ["Technology", "Healthcare", "Finance", "Manufacturing", "Retail", "Education"];
+    const sources = options.filter(o => o.metakey === "source");
+    const statuses = options.filter(o => o.metakey === "status");
+    const priorities = options.filter(o => o.metakey === "Priority");
+    const industries = options.filter(o => o.metakey === "Industry");
 
     async function save (formData: FormData)  {
 
@@ -23,7 +25,6 @@ export default function LeadsForm({callback, lead}: {callback: Function, lead?:L
             const response = await fetch( appConfig.leadsUrl, {
                 method: "POST",
                 headers: {
-                    mode: "cors",
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify(Object.fromEntries(formData))
@@ -61,7 +62,7 @@ export default function LeadsForm({callback, lead}: {callback: Function, lead?:L
                 <label>
                     <span>Source:</span>
                     <select name="source" required>
-                        {sources.map((s,i) => <option key={i} value={s}>{s}</option>)}
+                        {sources.map(s => <option key={s.id} value={s.id}>{s.metavalue}</option>)}
                     </select>
                 </label>
 
@@ -69,7 +70,7 @@ export default function LeadsForm({callback, lead}: {callback: Function, lead?:L
                 <label>
                     <span>Status:</span>
                     <select name="status" required>
-                        {statuses.map((s,i) => <option key={i} value={s}>{s}</option>)}
+                        {statuses.map(s => <option key={s.id} value={s.id}>{s.metavalue}</option>)}
                     </select>
                 </label>
 
@@ -80,7 +81,7 @@ export default function LeadsForm({callback, lead}: {callback: Function, lead?:L
                 <label>
                     <span>priority:</span>
                     <select name="priority" required>
-                        {priorities.map((p,i) => <option key={i} value={p}>{p}</option>)}
+                        {priorities.map(p => <option key={p.id} value={p.id}>{p.metavalue}</option>)}
                     </select>
                 </label>
 
@@ -88,7 +89,7 @@ export default function LeadsForm({callback, lead}: {callback: Function, lead?:L
                 <label>
                     <span>industry:</span>
                     <select name="industry" required>
-                        {industries.map((d,i) => <option key={i} value={d}>{d}</option>)}
+                        {industries.map(i => <option key={i.id} value={i.id}>{i.metavalue}</option>)}
                     </select>
                 </label>
 

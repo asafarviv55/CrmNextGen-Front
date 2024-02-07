@@ -22,7 +22,7 @@
     width: 15px;
 }
 
-.leads-history-box-1{
+.leads-history-box-New{
     border-color: var(--status-1);
 }
 
@@ -34,7 +34,7 @@
     border-color: var(--status-3);
 }
 
-.image-1{
+.image-New{
     background: radial-gradient(var(--status-1) 40%, rgba(255, 255, 255, 0) 30%);
 }
 

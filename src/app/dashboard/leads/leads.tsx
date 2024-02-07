@@ -3,16 +3,19 @@ import Table from "@/app/compoments/table";
 import LeadsTop from "./leads-top";
 import LeadModel, { LeadStatus } from "@/models/lead-model";
 import Tray from "@/app/compoments/tray/tray";
-import { useState } from "react";
+import { createContext, useState } from "react";
 import LeadsForm from "./leads-form";
 import LeadHistory from "./lead-history";
-
+import OptionsModel from "@/models/options-model";
 
 interface ILeadsProps{
     leads: LeadModel[]
+    options: OptionsModel[]
 }
 
-export default function Leads({leads}:ILeadsProps){
+export const OptionsContext = createContext<OptionsModel[]>();
+
+export default function Leads({leads, options}:ILeadsProps){
 
     const [showTray, setShowTray] = useState<boolean>(false);
     const [row, setRow] = useState<LeadModel>();
@@ -20,7 +23,7 @@ export default function Leads({leads}:ILeadsProps){
 
     const filter = (type:string) => {
         if(type === 'all') setLeadList([...leads])
-        if(type === 'new') setLeadList(leads.filter(l => l.status === "new"))
+        if(type === 'New') setLeadList(leads.filter(l => l.status === "New"))
         if(type === 'closed') setLeadList(leads.filter(l => l.status === "closed"))
     }
 
@@ -59,7 +62,7 @@ export default function Leads({leads}:ILeadsProps){
         },
         {
             name: 'Status',
-            selector: row => <span className={`lead-status lead-status-${row.status}`}>{ LeadStatus[row.status]}</span>,
+            selector: row => <span className={`lead-status lead-status-${row.status}`}>{ row.status }</span>,
             sortable: true,
         },
         {
@@ -80,20 +83,22 @@ export default function Leads({leads}:ILeadsProps){
     ];
 
     return (
-        <div className="leads grid-80-auto">
-            <LeadsTop filter={filter}/> 
-            <div className="box-wrap">
-                <div className="box">
-                    <Table data={leadsList} columns={columns} onRowClicked={rowClick}/>
+        <OptionsContext.Provider value={options}>
+            <div className="leads grid-80-auto">
+                <LeadsTop filter={filter}/> 
+                <div className="box-wrap">
+                    <div className="box">
+                        <Table data={leadsList} columns={columns} onRowClicked={rowClick}/>
+                    </div>
                 </div>
-            </div>
 
-            { showTray && 
-                <Tray setClose={()=> setShowTray(false)} title={"Client History"}>
-                    <LeadHistory lead={row}/>
-                </Tray>
-            }
-        </div>
+                { showTray && 
+                    <Tray setClose={()=> setShowTray(false)} title={"Client History"}>
+                        <LeadHistory lead={row}/>
+                    </Tray>
+                }
+            </div>
+        </OptionsContext.Provider>
     )
     
 }

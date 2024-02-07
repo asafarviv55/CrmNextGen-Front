@@ -19,7 +19,7 @@ export default function LeadHistory({lead}: {lead:LeadModel}){
     
     return (
         <div className="leads-history flex colmun gap">
-           { lead.notes.map(n => {
+           { lead.notes?.map(n => {
             const date = new Date(n.createdOn);
             return (
                 <div onClick={() => setNote(n)} className={`leads-history-box leads-history-box-${n.status} flex colmun gap`} key={n.id}>

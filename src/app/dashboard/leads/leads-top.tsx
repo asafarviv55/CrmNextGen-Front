@@ -23,7 +23,7 @@ export default function LeadsTop({filter}){
             <div className="flex">
                 <h1>Leads</h1>
                 <span onClick={() => innerFilter("all")} className={`tab ${activeFilter === "all" ? "active" : ""}`}>All leads</span>
-                <span onClick={() => innerFilter("new")} className={`tab ${activeFilter === "new" ? "active" : ""}`}>New leads</span>
+                <span onClick={() => innerFilter("New")} className={`tab ${activeFilter === "New" ? "active" : ""}`}>New leads</span>
                 <span onClick={() => innerFilter("closed")} className={`tab ${activeFilter === "closed" ? "active" : ""}`}>Closed leads</span>
             </div>
 
