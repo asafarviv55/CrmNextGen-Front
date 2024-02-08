@@ -1,4 +1,5 @@
-"use client";
+"use client"
+
 import Table from "@/app/compoments/table";
 import LeadsTop from "./leads-top";
 import LeadModel, { LeadStatus } from "@/models/lead-model";
@@ -13,7 +14,7 @@ interface ILeadsProps{
     options: OptionsModel[]
 }
 
-export const OptionsContext = createContext<OptionsModel[]>();
+export const OptionsContext = createContext<OptionsModel[]>([]);
 
 export default function Leads({leads, options}:ILeadsProps){
 
@@ -94,7 +95,7 @@ export default function Leads({leads, options}:ILeadsProps){
 
                 { showTray && 
                     <Tray setClose={()=> setShowTray(false)} title={"Client History"}>
-                        <LeadHistory lead={row}/>
+                        {row && <LeadHistory lead={row}/> }
                     </Tray>
                 }
             </div>

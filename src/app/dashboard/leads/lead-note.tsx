@@ -1,5 +1,6 @@
 import Loader from "@/app/compoments/loader/loader";
 import { Note } from "@/models/lead-model";
+import appConfig from "@/utils/app-config";
 import { useState } from "react";
 
 export default function LeadNote({ note, setNote, leadId }: {note:Note, setNote: Function, leadId: number}){
@@ -14,9 +15,8 @@ export default function LeadNote({ note, setNote, leadId }: {note:Note, setNote:
                 method: "post",
                 body: formData
             })
-            if( !response.ok ) throw new Error(response.status)
+            if( !response.ok ) throw new Error(response.status?.toString())
             alert("נשמר בהצלחה");
-            callback();
         } catch (error:any) {
             setErr(error.message);            
         }finally{
@@ -54,7 +54,7 @@ export default function LeadNote({ note, setNote, leadId }: {note:Note, setNote:
 
             <label>
                 <span>Record:</span>
-                <textarea name="note" rows="8" defaultValue={note.record}></textarea>
+                <textarea name="note" rows={8} defaultValue={note.record}></textarea>
             </label>
 
             <div className="flex colmun gap">

@@ -1,15 +1,14 @@
 import { useState } from "react";
-import {ILayoutProps} from "../../layout";
 import styles from "./tray.module.css";
 
 
 interface ITrayProps{
     children: React.ReactNode;
-    setClose: (is: boolean) => void;
+    setClose: () => void;
     title: string
 }
 
-export default function Tray({children, setClose, title}:ILayoutProps ){
+export default function Tray({children, setClose, title}:ITrayProps ){
 
     const [open, setOpen] = useState<boolean>(true)
     const close = () => {

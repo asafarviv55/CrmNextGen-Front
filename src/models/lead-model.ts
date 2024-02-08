@@ -4,7 +4,7 @@ export default class LeadModel{
     source: string
     phone: string
     email: string
-    status: LeadStatus
+    status: string
     assignTo: number
     priority: string
     createdOn: string

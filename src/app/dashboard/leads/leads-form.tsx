@@ -29,7 +29,7 @@ export default function LeadsForm({callback, lead}: {callback: Function, lead?:L
                 },
                 body: JSON.stringify(Object.fromEntries(formData))
             })
-            if( !response.ok ) throw new Error(response.status)
+            if( !response.ok ) throw new Error(response.status?.toString())
             alert("נשמר בהצלחה");
             callback();
         } catch (error:any) {
@@ -97,7 +97,7 @@ export default function LeadsForm({callback, lead}: {callback: Function, lead?:L
 
             <label>
                 <span>Note:</span>
-                <textarea name="note" rows="8"></textarea>
+                <textarea name="note" rows={8}></textarea>
             </label>
 
             <button className="btn btn-primary">Save</button>
