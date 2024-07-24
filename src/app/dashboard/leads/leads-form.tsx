@@ -1,5 +1,4 @@
 import Loader from "@/app/compoments/loader/loader";
-import Tray from "@/app/compoments/tray/tray";
 import LeadModel from "@/models/lead-model";
 import appConfig from "@/utils/app-config";
 import { useContext, useState } from "react";

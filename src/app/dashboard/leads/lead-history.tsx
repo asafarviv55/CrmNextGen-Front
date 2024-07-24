@@ -1,7 +1,4 @@
-import Loader from "@/app/compoments/loader/loader";
-import Tray from "@/app/compoments/tray/tray";
 import LeadModel, { LeadStatus, Note } from "@/models/lead-model";
-import appConfig from "@/utils/app-config";
 import { useState } from "react";
 import arrowIcon from "../../../../public/arrow-l.svg";
 import calanderIcon from "../../../../public/calander.svg";

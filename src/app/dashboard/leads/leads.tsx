@@ -5,7 +5,6 @@ import LeadsTop from "./leads-top";
 import LeadModel, { LeadStatus } from "@/models/lead-model";
 import Tray from "@/app/compoments/tray/tray";
 import { createContext, useState } from "react";
-import LeadsForm from "./leads-form";
 import LeadHistory from "./lead-history";
 import OptionsModel from "@/models/options-model";
 
